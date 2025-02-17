@@ -11,4 +11,5 @@ export default defineConfig({
   out: "./src/db/migrations",
   dialect: "turso",
   dbCredentials: DB_CREDENTIAL,
+  introspect: { casing: "preserve" },
 });
