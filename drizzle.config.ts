@@ -2,7 +2,7 @@ import { defineConfig } from "drizzle-kit";
 import { IS_PRODUCTION } from "./src/app/config.ts";
 
 export const DB_CREDENTIAL = {
-  url: !IS_PRODUCTION ? "file:./src/db/template.db" : Deno.env.get("TURSO_DATABASE_URL")!,
+  url: !IS_PRODUCTION ? "file:./src/db/contacts.db" : Deno.env.get("TURSO_DATABASE_URL")!,
   authToken: Deno.env.get("TURSO_AUTH_TOKEN")!,
 };
 
