@@ -19,8 +19,6 @@ export const login_service = async (login: LoginDto) => {
   const token = JWT.sign({
     id: account.id,
     role: account.role,
-    img: account.img,
-    name: account.name,
     email: account.email,
   });
 
@@ -30,7 +28,5 @@ export const login_service = async (login: LoginDto) => {
 export interface TokenPayload extends JwtPayload {
   id: UUID;
   role: Role;
-  name: string;
-  img: string;
   email: string;
 }

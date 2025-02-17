@@ -7,8 +7,8 @@ export const contacts = sqliteTable("contacts", {
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
   name: text().notNull(),
-  tel: integer(),
-  country: integer(), // recuerda validar con el enum Country
+  tel: integer().notNull(),
+  country: integer().notNull(), // recuerda validar con el enum Country
 
   created_at: text().default(sql`(CURRENT_TIMESTAMP)`),
   updated_at: text().$onUpdate(() => sql`(CURRENT_TIMESTAMP)`),

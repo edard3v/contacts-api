@@ -1,5 +1,5 @@
 import { relations } from "drizzle-orm/relations";
-import { accounts, contacts } from "./migrations/schema.ts";
+import { accounts, contacts } from "./schema.ts";
 
 export const contactsRelations = relations(contacts, ({ one }) => ({
   account: one(accounts, {
