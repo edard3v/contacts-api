@@ -1,4 +1,4 @@
 import { accounts } from "./models/accounts.ts";
-import { categories } from "./models/categories.ts";
+import { contacts } from "./models/contacts.ts";
 
-export { accounts, categories };
+export { accounts, contacts };
