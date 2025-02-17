@@ -1,4 +1,4 @@
-# template-deno
+# template_deno
 
 - Fije variables de entorno, tome como ejemplo la declaración Env en env.d.ts
 - Fije la ruta local en drizzle.config.ts e ignorarla modificando .gitignore
