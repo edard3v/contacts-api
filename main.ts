@@ -7,7 +7,7 @@ Deno.serve(
     onListen() {
       console.table({
         is_production: IS_PRODUCTION,
-        server: `http://localhost:${PORT}/`,
+        server: Deno.env.get("API_BASE_URL"),
       });
     },
   },
