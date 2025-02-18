@@ -1,12 +1,13 @@
-import { drizzle } from "drizzle-orm/libsql";
+import pg from "pg";
+import { drizzle as drizzle_remote } from "drizzle-orm/neon-http";
+import { drizzle as drizzle_local } from "drizzle-orm/node-postgres";
+import { neon } from "@neondatabase/serverless";
+import { DATABASE_URL } from "../../drizzle.config.ts";
+import { IS_PRODUCTION } from "../app/config.ts";
 import * as schema from "./schema.ts";
-import { DB_CREDENTIAL } from "../../drizzle.config.ts";
-import { createClient } from "@libsql/client/node";
 import * as relations from "./relations.ts";
 
-const client = createClient(DB_CREDENTIAL);
+const sql = !IS_PRODUCTION ? new pg.Pool({ connectionString: DATABASE_URL }) : neon(DATABASE_URL);
+const config = { schema: { ...schema, ...relations } };
 
-export const db = drizzle({
-  client,
-  schema: { ...schema, ...relations },
-});
+export const db = !IS_PRODUCTION ? drizzle_local(sql, config) : drizzle_remote(sql, config);

@@ -1,21 +1,21 @@
 import { sql } from "drizzle-orm";
-import { integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
+import { integer, pgTable, text, uniqueIndex, timestamp, uuid } from "drizzle-orm/pg-core";
 import { accounts } from "./accounts.ts";
 
-export const contacts = sqliteTable(
+export const contacts = pgTable(
   "contacts",
   {
-    id: text({ length: 36 })
+    id: uuid()
       .primaryKey()
-      .$defaultFn(() => crypto.randomUUID()),
+      .default(sql`gen_random_uuid()`),
     name: text().notNull(),
     tel: integer().notNull(),
     country: integer().notNull(), // recuerda validar con el enum Country
 
-    created_at: text().default(sql`(CURRENT_TIMESTAMP)`),
-    updated_at: text().$onUpdate(() => sql`(CURRENT_TIMESTAMP)`),
+    created_at: timestamp().default(sql`now()`),
+    updated_at: timestamp().$onUpdate(() => sql`now()`),
 
-    account_id: text()
+    account_id: uuid()
       .notNull()
       .references(() => accounts.id, { onDelete: "cascade" }),
   },

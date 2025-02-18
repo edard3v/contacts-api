@@ -1,17 +1,17 @@
 import { sql } from "drizzle-orm";
-import { sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import { Role } from "../enums/Role.ts";
 
-export const accounts = sqliteTable("accounts", {
-  id: text({ length: 36 })
+export const accounts = pgTable("accounts", {
+  id: uuid()
     .primaryKey()
-    .$defaultFn(() => crypto.randomUUID()),
+    .default(sql`gen_random_uuid()`),
   role: text({ enum: [Role.admin, Role.client, Role.seller] }).default(Role.client),
   email: text().unique().notNull(),
   password: text().notNull(),
 
-  created_at: text().default(sql`(CURRENT_TIMESTAMP)`),
-  updated_at: text().$onUpdate(() => sql`(CURRENT_TIMESTAMP)`),
+  created_at: timestamp().default(sql`now()`),
+  updated_at: timestamp().$onUpdate(() => sql`now()`),
 });
 
 export type InsertAccounts = typeof accounts.$inferInsert;
