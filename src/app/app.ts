@@ -8,6 +8,7 @@ import { CORS } from "./config.ts";
 import { login_module } from "../modules/auth/login/login_module.ts";
 import { refresh_login_module } from "../modules/auth/refresh_login/refresh_login_module.ts";
 import { add_contact_module } from "../modules/contacts/add_contact/add_contact_module.ts";
+import { get_contacts_module } from "../modules/contacts/get_contacts/get_contacts_module.ts";
 
 export const app = new Hono();
 
@@ -19,6 +20,7 @@ app.route("/end_register", end_register_module);
 app.route("/login", login_module);
 app.route("/refresh_login", refresh_login_module);
 app.route("/add_contact", add_contact_module);
+app.route("/get_contacts", get_contacts_module);
 
 app.notFound(not_found_handler);
 app.onError(err_handler);
