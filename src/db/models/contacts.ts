@@ -21,8 +21,11 @@ export const contacts = sqliteTable(
   },
 
   (t) => [
-    uniqueIndex("unique_contact_per_account").on(t.account_id, t.name, t.tel),
-    // Esto evita que una misma cuenta tenga contactos duplicados por nombre o tel
+    // Evita que una misma cuenta tenga name duplicados
+    uniqueIndex("unique_name_per_account").on(t.account_id, t.name),
+
+    // Evita que una misma cuenta tenga tel duplicados
+    uniqueIndex("unique_tel_per_account").on(t.account_id, t.tel),
   ]
 );
 
