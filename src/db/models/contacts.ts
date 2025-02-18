@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { integer, pgTable, text, uniqueIndex, timestamp, uuid } from "drizzle-orm/pg-core";
+import { integer, pgTable, text, uniqueIndex, uuid } from "drizzle-orm/pg-core";
 import { accounts } from "./accounts.ts";
 
 export const contacts = pgTable(
@@ -12,8 +12,8 @@ export const contacts = pgTable(
     tel: integer().notNull(),
     country: integer().notNull(), // recuerda validar con el enum Country
 
-    created_at: timestamp().default(sql`now()`),
-    updated_at: timestamp().$onUpdate(() => sql`now()`),
+    created_at: text().default(sql`(CURRENT_TIMESTAMP)`),
+    updated_at: text().$onUpdate(() => sql`(CURRENT_TIMESTAMP)`),
 
     account_id: uuid()
       .notNull()
