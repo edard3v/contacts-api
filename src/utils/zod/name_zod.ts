@@ -16,7 +16,7 @@ export const name_zod = z
   })
   .refine((name) => !REGEX.specialCharacters.test(name), {
     message: "Sin carácteres especiales.",
-  })
-  .refine((name) => !REGEX.numbers.test(name), {
-    message: "Sin números.",
   });
+// .refine((name) => !REGEX.numbers.test(name), {
+//   message: "Sin números.",
+// });
