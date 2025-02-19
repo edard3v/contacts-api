@@ -19,6 +19,8 @@ add_contact_module.post(
     const { id } = context.get("tokenPayload") as TokenPayload;
     const new_contact = context.req.valid("json");
     await add_contact_service(id, new_contact);
+
+    context.status(201);
     return context.json({ msg: "Contacto agregado correctamente." });
   }
 );

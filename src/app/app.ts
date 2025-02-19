@@ -10,6 +10,7 @@ import { refresh_login_module } from "../modules/auth/refresh_login/refresh_logi
 import { add_contact_module } from "../modules/contacts/add_contact/add_contact_module.ts";
 import { get_contacts_module } from "../modules/contacts/get_contacts/get_contacts_module.ts";
 import { edit_contact_module } from "../modules/contacts/edit_contact/edit_contact_module.ts";
+import { remove_contact_module } from "../modules/contacts/remove_contact/remove_contact_module.ts";
 
 export const app = new Hono();
 
@@ -25,6 +26,7 @@ app.route("/refresh_login", refresh_login_module);
 app.route("/add_contact", add_contact_module);
 app.route("/get_contacts", get_contacts_module);
 app.route("/edit_contact", edit_contact_module);
+app.route("/remove_contact", remove_contact_module);
 
 app.notFound(not_found_handler);
 app.onError(err_handler);

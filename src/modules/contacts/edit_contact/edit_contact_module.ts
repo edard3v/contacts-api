@@ -3,7 +3,7 @@ import { zValidator } from "@hono/zod-validator";
 import { verify_auth } from "../../../middlewares/verify_auth.ts";
 import { TokenPayload } from "../../auth/login/login_service.ts";
 import { edit_contact_dto } from "./edit_contact_dto.ts";
-import { edit_contact_service } from "./edit_contacts_service.ts";
+import { edit_contact_service } from "./edit_contact_service.ts";
 import { UUID } from "node:crypto";
 
 export const edit_contact_module = new Hono();
