@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { integer, pgTable, text, uniqueIndex, uuid } from "drizzle-orm/pg-core";
+import { bigint, integer, pgTable, text, uniqueIndex, uuid } from "drizzle-orm/pg-core";
 import { accounts } from "./accounts.ts";
 
 export const contacts = pgTable(
@@ -9,7 +9,7 @@ export const contacts = pgTable(
       .primaryKey()
       .default(sql`gen_random_uuid()`),
     name: text().notNull(),
-    tel: integer().notNull(),
+    tel: bigint({ mode: "number" }).notNull(),
     country: integer().notNull(), // recuerda validar con el enum Country
 
     created_at: text().default(sql`(CURRENT_TIMESTAMP)`),
