@@ -14,7 +14,6 @@
     "zod": "npm:zod@3.24.1",
     "@hono/zod-validator": "npm:@hono/zod-validator@0.4.2",
 
-    "resend": "npm:resend@4.1.2",
     "jsonwebtoken": "npm:jsonwebtoken@9.0.2",
     "@ts-rex/bcrypt": "jsr:@ts-rex/bcrypt@1.0.3",
 
