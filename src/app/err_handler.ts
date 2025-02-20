@@ -8,5 +8,5 @@ export const err_handler: ErrorHandler = (err, context) => {
 
   console.log(err);
   context.status(500);
-  return context.json({ name: err.name, msg: "Error interno del servidor" });
+  return context.text(err.name);
 };
