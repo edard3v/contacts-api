@@ -15,17 +15,17 @@ export const get_contacts_service = async (account_id: UUID, filters: GetContact
     tel ? eq(contacts.tel, tel) : undefined,
   ].filter(Boolean);
 
-  const totalRecords = (
+  const total_records = (
     await db
       .select({ id: contacts.id })
       .from(contacts)
       .where(and(...where))
   ).length;
 
-  if (!totalRecords) throw new Record404();
+  if (!total_records) throw new Record404();
 
-  const totalPages = Math.ceil(totalRecords / limit) || 1;
-  if (page > totalPages) throw new PageErr();
+  const total_pages = Math.ceil(total_records / limit) || 1;
+  if (page > total_pages) throw new PageErr();
 
   const records = await db
     .select({
@@ -44,7 +44,7 @@ export const get_contacts_service = async (account_id: UUID, filters: GetContact
   return {
     limit,
     page,
-    totalPages,
+    total_pages,
     records,
   };
 };
