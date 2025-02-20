@@ -3,11 +3,10 @@ import { HTTPException } from "hono/http-exception";
 
 export const err_handler: ErrorHandler = (err, context) => {
   if (err instanceof HTTPException) {
-    return err.getResponse();
+    return context.json({ error: err.message, status: err.status });
   }
 
   console.log(err);
   context.status(500);
-  context.header("Content-Type", "text/plain");
-  return context.text(err.name);
+  return context.json({ err_name: err.name, msg: "Error de servidor" });
 };
