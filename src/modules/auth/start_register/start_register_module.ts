@@ -14,6 +14,6 @@ start_register_module.post(
   async (context) => {
     const credentials = context.req.valid("json");
     await start_register_service(credentials);
-    return context.text("Email de verificación enviando correctamente.");
+    return context.json({ msg: "Email de verificación enviando correctamente." });
   }
 );

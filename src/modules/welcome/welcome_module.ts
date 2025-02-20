@@ -5,5 +5,5 @@ export const welcome_module = new Hono();
 
 welcome_module.get("/", (context) => {
   const msg = welcome_service();
-  return context.text(msg);
+  return context.json({ msg });
 });

@@ -27,6 +27,6 @@ end_register_module.get(
   async (context) => {
     const credentials = context.get("credentials");
     await end_register_service(credentials);
-    return context.text("¡Enhorabuena! Se ha registrado correctamente.");
+    return context.json({ msg: "¡Enhorabuena! Se ha registrado correctamente." });
   }
 );
