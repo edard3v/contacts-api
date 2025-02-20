@@ -8,5 +8,6 @@ export const err_handler: ErrorHandler = (err, context) => {
 
   console.log(err);
   context.status(500);
+  context.header("Content-Type", "text/plain");
   return context.text(err.name);
 };
