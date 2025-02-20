@@ -6,7 +6,7 @@ import { start_register_module } from "../modules/auth/start_register/start_regi
 import { end_register_module } from "../modules/auth/end_register/end_register_module.ts";
 import { CORS } from "./config.ts";
 import { login_module } from "../modules/auth/login/login_module.ts";
-import { refresh_login_module } from "../modules/auth/refresh_login/refresh_login_module.ts";
+import { refresh_token_module } from "../modules/auth/refresh_token/refresh_token_module.ts";
 import { add_contact_module } from "../modules/contacts/add_contact/add_contact_module.ts";
 import { get_contacts_module } from "../modules/contacts/get_contacts/get_contacts_module.ts";
 import { edit_contact_module } from "../modules/contacts/edit_contact/edit_contact_module.ts";
@@ -21,7 +21,7 @@ app.route("/", welcome_module);
 app.route("/start_register", start_register_module);
 app.route("/end_register", end_register_module);
 app.route("/login", login_module);
-app.route("/refresh_login", refresh_login_module);
+app.route("/refresh_token", refresh_token_module);
 
 app.route("/add_contact", add_contact_module);
 app.route("/get_contacts", get_contacts_module);

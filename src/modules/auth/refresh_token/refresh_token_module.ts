@@ -1,10 +1,10 @@
 import { Hono } from "hono";
 import { verify_auth } from "../../../middlewares/verify_auth.ts";
-import { refresh_login_service } from "./refresh_login_service.ts";
+import { refresh_token_service } from "./refresh_token_service.ts";
 
-export const refresh_login_module = new Hono();
+export const refresh_token_module = new Hono();
 
-refresh_login_module.post(
+refresh_token_module.post(
   "",
 
   verify_auth,
@@ -12,7 +12,7 @@ refresh_login_module.post(
   // Controller
   (context) => {
     const tokenPayload = context.get("tokenPayload");
-    const newToken = refresh_login_service(tokenPayload);
+    const newToken = refresh_token_service(tokenPayload);
     return context.json({ token: newToken });
   }
 );
